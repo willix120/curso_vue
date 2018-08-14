@@ -5,7 +5,10 @@
 </head>
 <body>
 	<div id="main">
-		Hola, {{ nombre }}
+		<h3>Hola, {{ nombre }}</h3>
+		<div>
+			<a :href="url">Prueba de un enlace a {{ enlace }}</a>
+		</div>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -13,7 +16,9 @@
 		let app = new Vue({
 			el: '#main',
 			data: {
-				nombre: 'Williams'
+				nombre: 'Williams',
+				url:'http://localhost',
+				enlace: 'Localhost',
 			}
 		});
 	</script>
