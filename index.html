@@ -5,10 +5,12 @@
 </head>
 <body>
 	<div id="main">
-		<h3>Hola, {{ nombre }}</h3>
-		<div>
-			<a :href="url">Prueba de un enlace a {{ enlace }}</a>
-		</div>
+		<template v-if="mostrar">
+			<h3>Hola, {{ nombre }}</h3>
+			<div>
+				<a :href="url">Prueba de un enlace a {{ enlace }}</a>
+			</div>
+		</template>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,6 +21,7 @@
 				nombre: 'Williams',
 				url:'http://localhost',
 				enlace: 'Localhost',
+				mostrar: true,
 			}
 		});
 	</script>
