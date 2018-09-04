@@ -2,20 +2,41 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Curso de Vue.js</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 </head>
 <body>
 	<div id="main">
-		<h1>Hola! Mi nombre es {{ mi_nombre }}</h1>
-		<template v-if="mostrar">
-			<h3>Crear/Destruir elementos html con v-if</h3>
-			<div>
-				<a :href="url">Prueba de un enlace a {{ enlace }}</a>
+		<section class="section">
+			<div class="container">
+				<h1 class="title">Hola! Mi nombre es {{ mi_nombre }}</h1>
 			</div>
-		</template>
-		<h3>Mostrar/Ocultar elementos con v-show</h3>
-		<p v-show="show">Éste mensaje se muestra</p>
-		<p v-show="!show">Éste mensaje se oculta</p>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h3 class="subtitle">Crear/Destruir elementos html con v-if</h3>
+				<template v-if="mostrar">
+					<p>Al mostrarse esta parte del HTML, la variable "mostrar" es true</p>
+					<div>
+						<a :href="url">Prueba de un enlace a {{ enlace }}</a>
+					</div>
+				</template>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<h3 class="subtitle">Mostrar/Ocultar elementos con v-show</h3>
+				<div v-show="show" class="notification is-success">
+					El valor de variable show es "true"
+				</div>
+				<div v-show="!show" class="notification is-danger">
+					Valor de var show es "false"
+				</div>
+			</div>
+		</section>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
