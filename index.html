@@ -11,6 +11,11 @@
 		<section class="section">
 			<div class="container">
 				<h1 class="title">Hola! Mi nombre es {{ mi_nombre }}</h1>
+				<p>Mi nombre <strong>{{ mi_nombre | mayusculas }}</strong> en Mayúsculas usando Filtro</p>
+				<p>Mi nombre <strong>{{ mi_nombre | minusculas }}</strong> en Minúsculas usando Filtro</p>
+				<hr>
+				<h2 class="subtitle">Reto Capitalize</h2>
+				<p>{{ texto_prueba | capitalize }}</p>
 			</div>
 		</section>
 
@@ -47,8 +52,20 @@
 				mi_nombre: 'Williams',
 				url:'http://localhost',
 				enlace: 'Localhost',
+				texto_prueba:'texto de Prueba para Procesar',
 				mostrar: true,
 				show: false,
+			},
+			filters: {
+				mayusculas: function (titulo) {
+					return titulo.toUpperCase();
+				},
+				minusculas: function (texto) {
+					return texto.toLowerCase();
+				},
+				capitalize: function (texto) {
+					return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+				},
 			}
 		});
 	</script>
