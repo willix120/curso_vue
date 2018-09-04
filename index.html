@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Curso de Vue.js</title>
 </head>
 <body>
 	<div id="main">
+		<h1>Hola! Mi nombre es {{ mi_nombre }}</h1>
 		<template v-if="mostrar">
-			<h3>Hola, {{ nombre }}</h3>
+			<h3>Crear/Destruir elementos html con v-if</h3>
 			<div>
 				<a :href="url">Prueba de un enlace a {{ enlace }}</a>
 			</div>
 		</template>
+		<h3>Mostrar/Ocultar elementos con v-show</h3>
+		<p v-show="show">Éste mensaje se muestra</p>
+		<p v-show="!show">Éste mensaje se oculta</p>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -18,10 +23,11 @@
 		let app = new Vue({
 			el: '#main',
 			data: {
-				nombre: 'Williams',
+				mi_nombre: 'Williams',
 				url:'http://localhost',
 				enlace: 'Localhost',
 				mostrar: true,
+				show: false,
 			}
 		});
 	</script>
