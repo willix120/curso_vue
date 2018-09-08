@@ -13,8 +13,7 @@
 		<h3>Selecciona los exámenes</h3>
 		<form v-on:submit.prevent="enviar_datos">
 			<template v-for="examen in examenes">
-				<input v-bind:value="examen.clave" v-model="seleccionados" type="checkbox" v-bind:id="examen.clave">
-				<label v-bind:for="examen.clave">{{ examen.nombre }}</label>
+				<examen v-bind:examen="examen" v-on:checkear="seleccionarExamen"></examen>
 			</template>
 			<button type="submit">Enviar Datos</button>
 		</form>
@@ -22,6 +21,21 @@
 
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script type="text/javascript">
+		Vue.component("examen",{
+			props:['examen'],
+			methods:{
+				oncheck: function (evento) {
+					this.$emit('checkear', this.examen.clave, evento.target.checked)
+				}
+			},
+			template:`
+			<div>
+				<input v-bind:value="examen.clave" type="checkbox" v-bind:id="examen.clave" v-on:change="oncheck">
+				<label v-bind:for="examen.clave">{{ examen.nombre }}</label>
+			</div>
+			`
+		})
+
 		let formularios = new Vue({
 			el: "#componente_principal",
 			data: {
@@ -66,6 +80,15 @@
 				enviar_datos: function () {
 					console.log("Se ejecuta este methodo");
 					console.log(this.seleccionados);
+				},
+
+				seleccionarExamen: function (examen_clave, checkear) {
+					if(checkear){
+						this.seleccionados.push(examen_clave)
+					}else{
+						let indice = this.seleccionados.indexOf(examen_clave)
+						this.seleccionados.splice(indice, 1)
+					}
 				}
 			}
 		});
