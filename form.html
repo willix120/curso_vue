@@ -12,18 +12,10 @@
 		<hr>
 		<h3>Selecciona los exámenes</h3>
 		<form v-on:submit.prevent="enviar_datos">
-			<input value="hematologia" v-model="examenes" type="checkbox" id="hematologia">
-			<label for="hematologia">Hematología Completa</label>
-
-			<input value="glicemia" v-model="examenes" type="checkbox" id="glicemia">
-			<label for="glicemia">Glicemia Basal</label>
-
-			<input value="urea" v-model="examenes" type="checkbox" id="urea">
-			<label for="urea">Urea</label>
-
-			<input value="creatinina" v-model="examenes" type="checkbox" id="creatinina">
-			<label for="creatinina">Creatinina</label>
-
+			<template v-for="examen in examenes">
+				<input v-bind:value="examen.clave" v-model="seleccionados" type="checkbox" v-bind:id="examen.clave">
+				<label v-bind:for="examen.clave">{{ examen.nombre }}</label>
+			</template>
 			<button type="submit">Enviar Datos</button>
 		</form>
 	</div>
@@ -34,7 +26,33 @@
 			el: "#componente_principal",
 			data: {
 				mi_nombre: "",
-				examenes: [],
+				examenes: [
+					{
+						clave: "hematologia",
+						nombre: "Hematología Completa"
+					},
+					{
+						clave: "glicemia",
+						nombre: "Glicemia Basal"
+					},
+					{
+						clave: "urea",
+						nombre: "Urea"
+					},
+					{
+						clave: "creatinina",
+						nombre: "Creatinina"
+					},
+					{
+						clave: "colesterol",
+						nombre: "Colesterol"
+					},
+					{
+						clave: "trigliceridos",
+						nombre: "Trigliceridos"
+					}
+				],
+				seleccionados: [],
 			},
 			filters: {
 				mayus: function (str) {
@@ -47,7 +65,7 @@
 			methods:{
 				enviar_datos: function () {
 					console.log("Se ejecuta este methodo");
-					console.log(this.examenes);
+					console.log(this.seleccionados);
 				}
 			}
 		});
