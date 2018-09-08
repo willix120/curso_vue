@@ -42,6 +42,15 @@
 				</div>
 			</div>
 		</section>
+
+		<section class="section">
+			<div class="container">
+				<h3 class="title">Manejo de Eventos</h3>
+				<button class="button is-success" v-on:click="sumar">Sumar</button>
+				<button class="button is-danger" v-on:click="restar">Restar</button>
+				<p>Contador: {{ numero_contador }}</p>
+			</div>
+		</section>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -55,6 +64,7 @@
 				texto_prueba:'texto de Prueba para Procesar',
 				mostrar: true,
 				show: false,
+				numero_contador: 0,
 			},
 			filters: {
 				mayusculas: function (titulo) {
@@ -66,6 +76,14 @@
 				capitalize: function (texto) {
 					return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
 				},
+			},
+			methods: {
+				sumar: function () {
+					this.numero_contador++
+				},
+				restar: function () {
+					this.numero_contador--
+				}
 			}
 		});
 	</script>

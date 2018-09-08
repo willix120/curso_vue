@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Manejo de Formularios en Vue</title>
+</head>
+<body>
+	<div id="componente_principal">
+		<input type="text" v-model="mi_nombre">
+		<p>Mi nombre en mayúsculas: {{ mi_nombre | mayus }}</p>
+		<p>En minúsculas: {{ mi_nombre | minus }}</p>
+		<hr>
+		<h3>Selecciona los exámenes</h3>
+		<form v-on:submit.prevent="enviar_datos">
+			<input value="hematologia" v-model="examenes" type="checkbox" id="hematologia">
+			<label for="hematologia">Hematología Completa</label>
+
+			<input value="glicemia" v-model="examenes" type="checkbox" id="glicemia">
+			<label for="glicemia">Glicemia Basal</label>
+
+			<input value="urea" v-model="examenes" type="checkbox" id="urea">
+			<label for="urea">Urea</label>
+
+			<input value="creatinina" v-model="examenes" type="checkbox" id="creatinina">
+			<label for="creatinina">Creatinina</label>
+
+			<button type="submit">Enviar Datos</button>
+		</form>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		let formularios = new Vue({
+			el: "#componente_principal",
+			data: {
+				mi_nombre: "",
+				examenes: [],
+			},
+			filters: {
+				mayus: function (str) {
+					return str.toUpperCase()
+				},
+				minus: function (str) {
+					return str.toLowerCase()
+				}
+			},
+			methods:{
+				enviar_datos: function () {
+					console.log("Se ejecuta este methodo");
+					console.log(this.examenes);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
